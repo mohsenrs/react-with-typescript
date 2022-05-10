@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import './App.css'
+import List from './comps/List'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface PeopleList {
+  people: {
+    name: string
+    url: string
+    age: number
+    note?: string
+  }[]
 }
 
-export default App;
+const peopleList = [
+  {
+    name: 'mohsen',
+    url: 'https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png',
+    age: 21,
+    note: 'mohsen is 21yo',
+  },
+  {
+    name: 'ali',
+    url: 'https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png',
+    age: 22,
+    note: 'ali is 22yo',
+  },
+  {
+    name: 'mamad',
+    url: 'https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png',
+    age: 23,
+    note: 'mamad is 23yo',
+  },
+]
+
+function App() {
+  const [people, setPeople] = useState<PeopleList['people']>(peopleList)
+
+  return (
+    <div className='App'>
+      <h1>People invited to party</h1>
+      <List people={people} />
+    </div>
+  )
+}
+
+export default App
