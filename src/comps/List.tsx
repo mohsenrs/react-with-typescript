@@ -14,7 +14,7 @@ const List: React.FC<PeopleProps> = ({ people }) => {
     <ul>
       {people.map((person) => (
         <Item
-          key={person.name}
+          key={person.age}
           name={person.name}
           url={person.url}
           age={person.age}

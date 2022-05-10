@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import AddToList from './comps/AddToList'
 import List from './comps/List'
 
 interface PeopleList {
@@ -9,6 +10,13 @@ interface PeopleList {
     age: number
     note?: string
   }[]
+}
+
+interface AddPerson {
+  name: string
+  url: string
+  age: string
+  note: string
 }
 
 const peopleList = [
@@ -35,10 +43,23 @@ const peopleList = [
 function App() {
   const [people, setPeople] = useState<PeopleList['people']>(peopleList)
 
+  const AddPerson = (person: AddPerson) => {
+    setPeople([
+      ...people,
+      {
+        name: person.name,
+        age: parseInt(person.age),
+        url: person.url,
+        note: person.note,
+      },
+    ])
+  }
+
   return (
     <div className='App'>
       <h1>People invited to party</h1>
       <List people={people} />
+      <AddToList addPerson={AddPerson} />
     </div>
   )
 }
